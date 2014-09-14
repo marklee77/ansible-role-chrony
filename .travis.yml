@@ -9,7 +9,8 @@ before_install:
 install:
 
     # Install Ansible.
-    - sudo pip install --upgrade ansible
+    #- sudo pip install --upgrade ansible
+    - sudo apt-get -y install ansible
     - ansible-playbook --version
 
 script:
