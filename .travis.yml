@@ -36,4 +36,4 @@ script:
 
     - ls -Falh /proc | sort
 
-    - sudo cat /var/log/syslog
+    - sudo grep chrony /var/log/syslog
