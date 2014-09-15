@@ -12,7 +12,6 @@ install:
     - sudo apt-get -y install ansible
     - sudo apt-get -y install strace
     - ansible-playbook --version
-    - sudo ntpdate pool.ntp.org
 
 script:
 
@@ -26,13 +25,9 @@ script:
     - ansible-playbook -i travis/inventory site.yml
 
     # properly idempotence should require no changes, but the travis vm seems to
-    # have trouble seeing that chrony is running...
+    # have trouble running chrony...
     - >
       ansible-playbook -i travis/inventory site.yml
       | grep -q 'changed=1 .*failed=0'
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
-
-    - sudo ps aux | grep chrony
-
-    - sudo grep chrony /var/log/syslog | grep dump
