@@ -45,3 +45,7 @@ script:
     - sudo ls -Falh /etc/init.d
 
     - dpkg -l | grep ntp
+
+    - sudo /usr/sbin/chronyd
+
+    - sudo ps aux | grep chrony
