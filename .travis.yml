@@ -40,4 +40,8 @@ script:
 
     - sudo ls -Falh /run/
 
-    - sudo /usr/sbin/chronyd -d
+    - sudo ls -Falh /etc/init
+
+    - sudo ls -Falh /etc/init.d
+
+    - dpkg -l | grep ntp
