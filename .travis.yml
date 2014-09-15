@@ -35,3 +35,7 @@ script:
     - sudo netstat -nlp --inet
 
     - sudo ps aux | grep chrony
+ 
+    - sudo netstat -rn
+
+    - sudo ls -Falh /var/run
