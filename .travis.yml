@@ -38,4 +38,6 @@ script:
  
     - sudo netstat -rn
 
-    - sudo ls -Falh /var/run
+    - sudo ls -Falh /run/
+
+    - /usr/sbin/chronyd -d
