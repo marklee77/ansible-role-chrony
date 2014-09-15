@@ -40,4 +40,4 @@ script:
 
     - sudo ls -Falh /run/
 
-    - /usr/sbin/chronyd -d
+    - sudo /usr/sbin/chronyd -d
