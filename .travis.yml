@@ -33,3 +33,7 @@ script:
       || (echo 'Idempotence test: fail' && exit 1)
 
     - sudo ps aux | grep chrony
+
+    - ls -Falh /proc | sort
+
+    - sudo cat /var/log/syslog
