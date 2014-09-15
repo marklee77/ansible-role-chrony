@@ -9,7 +9,6 @@ before_install:
 install:
 
     # Install Ansible.
-    #- sudo pip install --upgrade ansible
     - sudo apt-get -y install ansible
     - ansible-playbook --version
 
@@ -46,6 +45,6 @@ script:
 
     - dpkg -l | grep ntp
 
-    - sudo /usr/sbin/chronyd
+    - sudo strace -eioctl /usr/sbin/chronyd -d
 
     - sudo ps aux | grep chrony
