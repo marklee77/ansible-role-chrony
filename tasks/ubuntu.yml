@@ -1,6 +1,7 @@
 ---
 - name: ensure chrony packages are installed
-  apt: 
+  action: "{{ ansible_pkg_mgr }}"
+  args: 
     pkg: "{{ item }}" 
     state: latest 
     update_cache: yes 
