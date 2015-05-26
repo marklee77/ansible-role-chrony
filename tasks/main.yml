@@ -1,3 +1,29 @@
 ---
-- include: ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
+
+- name: ensure chrony packages are installed
+  action: "{{ ansible_pkg_mgr }}"
+  args: chrony_package_info[ansible_pkg_mgr]["args"]
+  with_items: chrony_package_info[ansible_pkg_mgr]["items"]
+
+- name: update /etc/chrony/chrony.conf from template
+  template:
+    src: etc/chrony/chrony.conf
+    dest: /etc/chrony/chrony.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: chrony_conf
+
+- name: ensure chrony service is started and enabled
+  service: 
+    name: chrony
+    enabled: yes
+    state: started 
+    pattern: /usr/sbin/chronyd
+
+- name: ensure chrony service is restarted if necessary
+  service: 
+    name: chrony
+    state: restarted 
+    pattern: /usr/sbin/chronyd
+  when: chrony_conf|changed
