@@ -17,8 +17,7 @@
     owner: root
     group: root
     mode: 0644
-  notify:
-    - restart chrony
+  register: chrony_conf
 
 - name: ensure chrony service is started and enabled
   service: 
@@ -26,3 +25,10 @@
     enabled: yes
     state: started 
     pattern: /usr/sbin/chronyd
+
+- name: ensure chrony service is restarted if necessary
+  service: 
+    name: chrony
+    state: restarted 
+    pattern: /usr/sbin/chronyd
+  when: chrony_conf|changed
