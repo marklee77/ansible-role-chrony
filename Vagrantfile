@@ -6,7 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "chef/centos-6.5"
+  config.vm.box = "ubuntu/trusty"
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"
