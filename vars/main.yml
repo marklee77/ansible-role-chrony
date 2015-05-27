@@ -1,3 +1,8 @@
+chrony_pre_package_info:
+    apt:
+      args: {}
+      items: []
+
 chrony_package_info:
     apt:
       args:

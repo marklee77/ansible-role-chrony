@@ -1,4 +1,8 @@
 ---
+- name: ensure chrony dependncy packages are installed
+  action: "{{ ansible_pkg_mgr }}"
+  args: chrony_pre_package_info[ansible_pkg_mgr]["args"]
+  with_items: chrony_pre_package_info[ansible_pkg_mgr]["items"]
 
 - name: ensure chrony packages are installed
   action: "{{ ansible_pkg_mgr }}"
