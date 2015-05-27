@@ -16,18 +16,18 @@ install:
 script:
 
     # Check the role/playbook's syntax.
-    - ansible-playbook -i inventories/local.ini site.yml --syntax-check
+    - ansible-playbook -i inventories/local.ini deploy.yml --syntax-check
 
     # Run the role/playbook with ansible-playbook.
-    - ansible-playbook -i inventories/local.ini site.yml
+    - ansible-playbook -i inventories/local.ini deploy.yml
 
     # Run the role/playbook with ansible-playbook.
-    - ansible-playbook -i inventories/local.ini site.yml
+    - ansible-playbook -i inventories/local.ini deploy.yml
 
     # properly idempotence should require no changes, but the travis vm seems to
     # have trouble running chrony...
     - >
-      ansible-playbook -i inventories/local.ini site.yml
+      ansible-playbook -i inventories/local.ini deploy.yml
       | grep -q 'changed=1 .*failed=0'
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
