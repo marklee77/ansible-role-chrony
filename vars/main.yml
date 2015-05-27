@@ -40,5 +40,3 @@ chrony_os_service_info:
         name: chronyd
 
 chrony_service_info: "{{ chrony_os_service_info[ansible_distribution] }}"
-
-

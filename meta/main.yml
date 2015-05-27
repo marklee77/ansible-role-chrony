@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Mark Stillwell
-  description: Chrony for Ubuntu
+  description: Chrony
   license: GPLv2
   min_ansible_version: 1.2
   platforms:
@@ -12,6 +12,10 @@ galaxy_info:
     - raring
     - saucy
     - trusty
+  - name: CentOS
+    versions:
+    - 6.5
+    - 7
   categories:
     - system
 dependencies: []

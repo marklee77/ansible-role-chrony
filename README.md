@@ -3,7 +3,7 @@ marklee77.chrony
 
 [![Build Status](https://travis-ci.org/marklee77/ansible-role-chrony.svg?branch=master)](https://travis-ci.org/marklee77/ansible-role-chrony)
 
-Role to install chrony ntp server for ubuntu in client mode.
+Role to install chrony ntp daemon in client mode.
 
 Role Variables
 --------------
