@@ -1,0 +1,18 @@
+chrony_package_info:
+  pkg_mgr: yum
+  args:
+      name: "{{ item }}"
+      state: latest
+      update_cache: yes
+  pre_pkgs:
+    - ca-certificates
+    - epel-release
+    - libselinux-python
+  pkgs:
+    - chrony
+
+chrony_path_info:
+  conf_path: /etc/chrony.conf
+
+chrony_service_info:
+  name: chronyd

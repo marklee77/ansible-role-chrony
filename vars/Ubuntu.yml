@@ -1,0 +1,16 @@
+chrony_package_info:
+  pkg_mgr: apt
+  args:
+      pkg: "{{ item }}"
+      state: latest
+      update_cache: yes
+      cache_valid_time: 600
+  pre_pkgs: []
+  pkgs:
+    - chrony
+
+chrony_path_info:
+  conf_path: /etc/chrony/chrony.conf
+
+chrony_service_info:
+  name: chrony
