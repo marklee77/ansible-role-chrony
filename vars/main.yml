@@ -19,7 +19,6 @@ chrony_os_package_info:
         - ca-certificates
         - epel-release
         - libselinux-python
-        - yum-plugin-priorities
       pkgs:
         - chrony
 
