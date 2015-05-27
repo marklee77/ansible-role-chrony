@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     m.vm.box = "chef/centos-6.5"
     m.vm.hostname = "centos"
     m.vm.provision "ansible" do |ansible|
-      ansible.playbook = "site.yml"
+      ansible.playbook = "deploy.yml"
       ansible.limit = 'all'
     end
   end
