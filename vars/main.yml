@@ -1,13 +1,6 @@
-chrony_os_settings:
-    pkg_mgr: "{{ ansible_pkg_mgr }}"
-    pkg_mgr_args: "{{ chrony_package_info[ansible_pkg_mgr].args }}"
-    pre_pkgs: "{{ chrony_package_info[ansible_pkg_mgr].pre_pkgs }}"
-    pkgs: "{{ chrony_package_info[ansible_pkg_mgr].pkgs }}"
-
-chrony_conf_path: "{{ chrony_path_info[ansible_pkg_mgr].chrony_conf_path }}"
-
-chrony_package_info:
-    apt:
+chrony_os_package_info:
+    Ubuntu:
+      pkg_mgr: apt
       args:
           pkg: "{{ item }}"
           state: latest
@@ -16,7 +9,8 @@ chrony_package_info:
       pre_pkgs: []
       pkgs:
         - chrony
-    yum:
+    CentOS:
+      pkg_mgr: yum
       args:
           name: "{{ item }}"
           state: latest
@@ -24,12 +18,27 @@ chrony_package_info:
       pre_pkgs:
         - ca-certificates
         - epel-release
+        - libselinux-python
         - yum-plugin-priorities
       pkgs:
         - chrony
 
-chrony_path_info:
-    apt:
-      chrony_conf_path: /etc/chrony/chrony.conf
-    yum:
-      chrony_conf_path: /etc/chrony.conf
+chrony_package_info: "{{ chrony_os_package_info[ansible_distribution] }}"
+
+chrony_os_path_info:
+    Ubuntu:
+      conf_path: /etc/chrony/chrony.conf
+    CentOS:
+      conf_path: /etc/chrony.conf
+
+chrony_path_info: "{{ chrony_os_path_info[ansible_distribution] }}"
+
+chrony_os_service_info:
+    Ubuntu:
+        name: chrony
+    CentOS:
+        name: chronyd
+
+chrony_service_info: "{{ chrony_os_service_info[ansible_distribution] }}"
+
+
