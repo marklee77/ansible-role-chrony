@@ -1,5 +1,5 @@
 ---
-- name: ensure chrony dependncy packages are installed
+- name: ensure chrony requirements packages are installed
   action: "{{ chrony_package_info.pkg_mgr }}"
   args: chrony_package_info.args
   with_items: chrony_package_info.pre_pkgs
