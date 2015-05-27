@@ -1,7 +1,10 @@
-chrony_pre_package_info:
-    apt:
-      args: {}
-      items: []
+chrony_os_settings:
+    pkg_mgr: "{{ ansible_pkg_mgr }}"
+    pkg_mgr_args: "{{ chrony_package_info[ansible_pkg_mgr].args }}"
+    pre_pkgs: "{{ chrony_package_info[ansible_pkg_mgr].pre_pkgs }}"
+    pkgs: "{{ chrony_package_info[ansible_pkg_mgr].pkgs }}"
+
+chrony_conf_path: "{{ chrony_path_info[ansible_pkg_mgr].chrony_conf_path }}"
 
 chrony_package_info:
     apt:
@@ -10,12 +13,23 @@ chrony_package_info:
           state: latest
           update_cache: yes
           cache_valid_time: 600
-      items:
+      pre_pkgs: []
+      pkgs:
         - chrony
     yum:
       args:
           name: "{{ item }}"
           state: latest
           update_cache: yes
-      items:
+      pre_pkgs:
+        - ca-certificates
+        - epel-release
+        - yum-plugin-priorities
+      pkgs:
         - chrony
+
+chrony_path_info:
+    apt:
+      chrony_conf_path: /etc/chrony/chrony.conf
+    yum:
+      chrony_conf_path: /etc/chrony.conf

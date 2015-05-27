@@ -1,18 +1,23 @@
 ---
+#- debug:
+#    msg: "{{ chrony_os_settings }}"
+
 - name: ensure chrony dependncy packages are installed
-  action: "{{ ansible_pkg_mgr }}"
-  args: chrony_pre_package_info[ansible_pkg_mgr]["args"]
-  with_items: chrony_pre_package_info[ansible_pkg_mgr]["items"]
+  action: "{{ chrony_os_settings.pkg_mgr }}"
+  args: chrony_os_settings.pkg_mgr_args
+  with_items: chrony_os_settings.pre_pkgs
+  when: chrony_os_settings.pre_pkgs|length > 0
 
 - name: ensure chrony packages are installed
-  action: "{{ ansible_pkg_mgr }}"
-  args: chrony_package_info[ansible_pkg_mgr]["args"]
-  with_items: chrony_package_info[ansible_pkg_mgr]["items"]
+  action: "{{ chrony_os_settings.pkg_mgr }}"
+  args: chrony_os_settings.pkg_mgr_args
+  with_items: chrony_os_settings.pkgs
+  when: chrony_os_settings.pkgs|length > 0
 
-- name: update /etc/chrony/chrony.conf from template
+- name: update chrony.conf from template
   template:
-    src: etc/chrony/chrony.conf
-    dest: /etc/chrony/chrony.conf
+    src: chrony.conf
+    dest: "{{ chrony_conf_path }}"
     owner: root
     group: root
     mode: 0644
@@ -23,11 +28,11 @@
     name: chrony
     enabled: yes
     state: started 
-    pattern: /usr/sbin/chronyd
+    pattern: chronyd
 
 - name: ensure chrony service is restarted if necessary
   service: 
     name: chrony
     state: restarted 
-    pattern: /usr/sbin/chronyd
+    pattern: chronyd
   when: chrony_conf|changed
