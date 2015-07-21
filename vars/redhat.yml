@@ -1,0 +1,14 @@
+chrony_package_info:
+  pkg_mgr: yum
+  args:
+      name: "{{ item }}"
+      state: latest
+  pre_pkgs: []
+  pkgs:
+    - chrony
+
+chrony_path_info:
+  conf_path: /etc/chrony.conf
+
+chrony_service_info:
+  name: chronyd
