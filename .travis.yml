@@ -15,6 +15,9 @@ install:
 
 script:
 
+    # Create role symlink.
+    - mkdir -p roles && ln -s .. ./roles/chrony
+
     # Check the role/playbook's syntax.
     - ansible-playbook -i inventories/local.ini deploy.yml --syntax-check
 
@@ -28,6 +31,6 @@ script:
     # have trouble running chrony...
     - >
       ansible-playbook -i inventories/local.ini deploy.yml
-      | grep -q 'changed=1 .*failed=0'
+      | grep -q 'changed=0 .*failed=0'
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)

@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+`test -d ./roles || mkdir ./roles`
+`test -L ./roles/chrony || ln -s .. ./roles/chrony`
+
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
