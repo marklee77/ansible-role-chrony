@@ -34,6 +34,7 @@
     owner: root
     group: root
     mode: 0644
+    backup: yes
   register: chrony_conf
 
 - name: ensure chrony service is started and enabled
