@@ -2,7 +2,7 @@ chrony_package_info:
   pkg_mgr: yum
   args:
       name: "{{ item }}"
-      state: latest
+      state:  "{{ chrony_pkg_state }}"
   pre_pkgs: []
   pkgs:
     - chrony

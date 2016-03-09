@@ -2,8 +2,8 @@ chrony_package_info:
   pkg_mgr: apt
   args:
       pkg: "{{ item }}"
-      state: latest
-      update_cache: yes
+      state: "{{ chrony_pkg_state }}"
+      update_cache: "{{ chrony_pkg_update_cache }}"
       cache_valid_time: 600
   pre_pkgs: []
   pkgs:
