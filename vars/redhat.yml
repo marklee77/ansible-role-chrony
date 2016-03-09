@@ -26,3 +26,4 @@ chrony_bindaddresses:
 chrony_stratumweight: "stratumweight 0"
 
 chrony_server_settings: "iburst"
+chrony_generatecommandkey: "generatecommandkey"
