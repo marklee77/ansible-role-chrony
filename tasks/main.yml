@@ -15,6 +15,13 @@
       paths:
         - ../vars
 
+- name: ensure ntp package is absent
+  action: >
+        {{ chrony_package_info.pkg_mgr }}
+        name=ntp
+        state=absent
+  when: chrony_remove_ntp
+
 - name: ensure chrony requirements packages are installed
   action: "{{ chrony_package_info.pkg_mgr }}"
   args: chrony_package_info.args

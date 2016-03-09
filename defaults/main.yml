@@ -7,3 +7,4 @@ chrony_ntp_servers:
 
 chrony_pkg_state: "latest"
 chrony_pkg_update_cache: "yes"
+chrony_remove_ntp: False
