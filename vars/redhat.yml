@@ -12,3 +12,17 @@ chrony_path_info:
 
 chrony_service_info:
   name: chronyd
+
+chrony_keyfile: "/etc/chrony.keys"
+chrony_driftfile: "/var/lib/chrony/drift"
+chrony_rtc: "rtcsync"
+chrony_clientlog: "noclientlog"
+chrony_maxstep: "makestep 10 3"
+
+chrony_bindaddresses:
+ - "::1"
+ - "127.0.0.1"
+
+chrony_stratumweight: "stratumweight 0"
+
+chrony_server_settings: "iburst"

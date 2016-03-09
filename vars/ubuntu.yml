@@ -14,3 +14,10 @@ chrony_path_info:
 
 chrony_service_info:
   name: chrony
+
+chrony_keyfile: "/etc/chrony/chrony.keys"
+chrony_driftfile: "/var/lib/chrony/chrony.drift"
+chrony_rtc: "rtconutc"
+
+chrony_server_settings: "minpoll 8"
+
