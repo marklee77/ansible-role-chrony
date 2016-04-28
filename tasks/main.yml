@@ -25,13 +25,13 @@
 - name: ensure chrony requirements packages are installed
   action: "{{ chrony_package_info.pkg_mgr }}"
   args: chrony_package_info.args
-  with_items: chrony_package_info.pre_pkgs
+  with_items: "{{ chrony_package_info.pre_pkgs }}"
   when: chrony_package_info.pre_pkgs|length > 0
 
 - name: ensure chrony packages are installed
   action: "{{ chrony_package_info.pkg_mgr }}"
   args: chrony_package_info.args
-  with_items: chrony_package_info.pkgs
+  with_items: "{{ chrony_package_info.pkgs }}"
   when: chrony_package_info.pkgs|length > 0
 
 - name: update chrony.conf from template
