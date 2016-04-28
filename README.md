@@ -5,6 +5,8 @@ marklee77.chrony
 
 Role to install chrony ntp daemon in client mode.
 
+Depends on ansible 2.0 (uses the package module)
+
 Role Variables
 --------------
 
@@ -25,4 +27,5 @@ GPLv2
 Author Information
 ------------------
 
-http://stillwell.me
+- http://stillwell.me
+- https://github.com/martbhell/
