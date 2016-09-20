@@ -1,6 +1,7 @@
 ---
 language: python
 python: "2.7"
+dist: trusty
 
 before_install:
 
@@ -9,7 +10,9 @@ before_install:
 install:
 
     # Install Ansible.
-    - sudo apt-get -y install ansible
+    #- sudo apt-get -y install ansible
+    - sudo apt-get install python-pip
+    - sudo pip install ansible
     - sudo apt-get -y install strace
     - ansible-playbook --version
 

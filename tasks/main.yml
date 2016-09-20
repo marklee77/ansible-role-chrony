@@ -15,17 +15,19 @@
       paths:
         - ../vars
 
+- name: ensure ntp package is absent
+  package: name=ntp state=absent
+  when: chrony_remove_ntp
+
 - name: ensure chrony requirements packages are installed
-  action: "{{ chrony_package_info.pkg_mgr }}"
-  args: chrony_package_info.args
-  with_items: chrony_package_info.pre_pkgs
-  when: chrony_package_info.pre_pkgs|length > 0
+  package: name={{ item }} state={{ chrony_pkg_state }} update_cache={{ chrony_pkg_update_cache }}
+  with_items: "{{ chrony_pre_pkgs }}"
+  when: chrony_pre_pkgs|length > 0
 
 - name: ensure chrony packages are installed
-  action: "{{ chrony_package_info.pkg_mgr }}"
-  args: chrony_package_info.args
-  with_items: chrony_package_info.pkgs
-  when: chrony_package_info.pkgs|length > 0
+  package: name={{ item }} state={{ chrony_pkg_state }} update_cache={{ chrony_pkg_update_cache }}
+  with_items: "{{ chrony_pkgs }}"
+  when: chrony_pkgs|length > 0
 
 - name: update chrony.conf from template
   template:
@@ -34,6 +36,7 @@
     owner: root
     group: root
     mode: 0644
+    backup: yes
   register: chrony_conf
 
 - name: ensure chrony service is started and enabled
