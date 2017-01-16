@@ -40,15 +40,13 @@
   register: chrony_conf
 
 - name: ensure chrony service is started and enabled
-  service: 
+  service:
     name: "{{ chrony_service_info.name }}"
     enabled: yes
-    state: started 
-    pattern: chronyd
+    state: started
 
 - name: ensure chrony service is restarted if necessary
-  service: 
+  service:
     name: "{{ chrony_service_info.name }}"
-    state: restarted 
-    pattern: chronyd
+    state: restarted
   when: chrony_conf|changed
