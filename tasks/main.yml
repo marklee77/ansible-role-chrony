@@ -16,16 +16,22 @@
         - ../vars
 
 - name: ensure ntp package is absent
-  package: name=ntp state=absent
+  package:
+    name: ntp
+    state: absent
   when: chrony_remove_ntp
 
 - name: ensure chrony requirements packages are installed
-  package: name={{ item }} state={{ chrony_pkg_state }} update_cache={{ chrony_pkg_update_cache }}
+  package:
+    name: "{{ item }}"
+    state: "{{ chrony_pkg_state }}"
   with_items: "{{ chrony_pre_pkgs }}"
   when: chrony_pre_pkgs|length > 0
 
 - name: ensure chrony packages are installed
-  package: name={{ item }} state={{ chrony_pkg_state }} update_cache={{ chrony_pkg_update_cache }}
+  package:
+    name: "{{ item }}"
+    state: "{{ chrony_pkg_state }}"
   with_items: "{{ chrony_pkgs }}"
   when: chrony_pkgs|length > 0
 
