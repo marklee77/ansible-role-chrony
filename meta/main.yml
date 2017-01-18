@@ -12,6 +12,7 @@ galaxy_info:
     - raring
     - saucy
     - trusty
+    - xenial
   - name: CentOS
     versions:
     - 6.5

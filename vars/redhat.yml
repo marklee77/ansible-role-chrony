@@ -1,28 +1,27 @@
 ---
-chrony_pre_pkgs:
-    - "ca-certificates"
-    - "epel-release"
-    - "libselinux-python"
-chrony_pkgs:
-    - "chrony"
+chrony_pre_packages:
+  - ca-certificates
+  - epel-release
+  - libselinux-python
 
-chrony_path_info:
-  conf_path: /etc/chrony.conf
+chrony_packages:
+  - chrony
 
-chrony_service_info:
-  name: chronyd
+chrony_services:
+  - chronyd
 
-chrony_keyfile: "/etc/chrony.keys"
-chrony_driftfile: "/var/lib/chrony/drift"
-chrony_rtc: "rtcsync"
-chrony_clientlog: "noclientlog"
-chrony_maxstep: "makestep 10 3"
+chrony_config_path: /etc/chrony.conf
+chrony_keyfile_path: /etc/chrony.keys
+chrony_driftfile_path: /var/lib/chrony/drift
+chrony_rtc: rtcsync
+chrony_client_log: noclientlog
+chrony_max_step: makestep 10 3
 
-chrony_bindaddresses:
- - "::1"
- - "127.0.0.1"
+chrony_bind_addresses:
+ - ::1
+ - 127.0.0.1
 
-chrony_stratumweight: "stratumweight 0"
+chrony_stratum_weight: stratumweight 0
 
-chrony_server_settings: "iburst"
-chrony_generatecommandkey: "generatecommandkey"
+chrony_server_settings: iburst
+chrony_generate_command_key: generatecommandkey

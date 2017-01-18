@@ -1,21 +1,13 @@
-chrony_package_info:
-      state: "{{ chrony_pkg_state }}"
-      update_cache: "{{ chrony_pkg_update_cache }}"
-      cache_valid_time: 600
+---
+chrony_packages:
+  - chrony
 
-chrony_pre_pkgs: []
-chrony_pkgs:
-    - chrony
+chrony_services:
+  - chrony
 
-chrony_path_info:
-  conf_path: /etc/chrony/chrony.conf
-
-chrony_service_info:
-  name: chrony
-
-chrony_keyfile: "/etc/chrony/chrony.keys"
-chrony_driftfile: "/var/lib/chrony/chrony.drift"
-chrony_rtc: "rtconutc"
-
-chrony_server_settings: "minpoll 8"
+chrony_config_path: /etc/chrony/chrony.conf
+chrony_keyfile_path: /etc/chrony/chrony.keys
+chrony_driftfile_path: /var/lib/chrony/chrony.drift
+chrony_rtc: rtconutc
+chrony_server_settings: minpoll 8
 
